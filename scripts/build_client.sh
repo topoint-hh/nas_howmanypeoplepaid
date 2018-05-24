@@ -10,7 +10,9 @@ cd ../client
 npm install
 npm run build
 
-cp -r dist/* ../server/public
+echo '把client的dist文件夹放到项目根目录下来'
+
+cp -r dist/* ../
 
 git add -A
 git commit -a -m "update client"
