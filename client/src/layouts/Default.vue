@@ -5,7 +5,7 @@
         class="navbar-brand"
         :to="{ name: 'home.index' }"
       >
-        Vue 2 Boilerplate 你好
+        星云链DAPP
       </router-link>
 
       <button
@@ -15,42 +15,42 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div
-        class="collapse navbar-collapse"
-        :class="{ show : menuCollapsed}"
-      >
-        <ul class="navbar-nav mr-auto">
-          <router-link
-            :to="{ name: 'home.index' }"
-            active-class="active"
-            class="nav-item"
-            tag="li"
-          >
-            <a class="nav-link">
-              Home
-            </a>
-          </router-link>
-          <router-link
-            :to="{ name: 'account.index' }"
-            active-class="active"
-            class="nav-item"
-            tag="li"
-          >
-            <a class="nav-link">
-              Account
-            </a>
-          </router-link>
-        </ul>
-        <span class="navbar-text">
-          <a
-            class="btn btn-light"
-            href="#"
-            @click.prevent="logout"
-          >
-            <i class="fa fa-sign-out"></i>
-          </a>
-        </span>
-      </div>
+      <!--<div-->
+        <!--class="collapse navbar-collapse"-->
+        <!--:class="{ show : menuCollapsed}"-->
+      <!--&gt;-->
+        <!--<ul class="navbar-nav mr-auto">-->
+          <!--<router-link-->
+            <!--:to="{ name: 'home.index' }"-->
+            <!--active-class="active"-->
+            <!--class="nav-item"-->
+            <!--tag="li"-->
+          <!--&gt;-->
+            <!--<a class="nav-link">-->
+              <!--Home-->
+            <!--</a>-->
+          <!--</router-link>-->
+          <!--<router-link-->
+            <!--:to="{ name: 'account.index' }"-->
+            <!--active-class="active"-->
+            <!--class="nav-item"-->
+            <!--tag="li"-->
+          <!--&gt;-->
+            <!--<a class="nav-link">-->
+              <!--Account-->
+            <!--</a>-->
+          <!--</router-link>-->
+        <!--</ul>-->
+        <!--<span class="navbar-text">-->
+          <!--<a-->
+            <!--class="btn btn-light"-->
+            <!--href="#"-->
+            <!--@click.prevent="logout"-->
+          <!--&gt;-->
+            <!--<i class="fa fa-sign-out"></i>-->
+          <!--</a>-->
+        <!--</span>-->
+      <!--</div>-->
     </nav>
 
     <div class="container pt-4">

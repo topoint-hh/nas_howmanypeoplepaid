@@ -55,22 +55,26 @@ export default [
   },
   // SuperDict
   {
+    path: '/hmpp',
+    name: 'hmpp',
+    component: () => import('@/pages/hmpp.vue'),
+
+    // If the user needs to be a guest to view this page.
+  },
+  {
     path: '/superdict',
     name: 'superdict',
     component: () => import('@/pages/SuperDict.vue'),
 
     // If the user needs to be a guest to view this page.
-    meta: {
-      guest: true,
-    },
   },
   {
     path: '/',
-    redirect: '/superdict',
+    redirect: '/hmpp',
   },
 
   {
     path: '/*',
-    redirect: '/superdict',
+    redirect: '/hmpp',
   },
 ];

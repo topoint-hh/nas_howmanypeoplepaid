@@ -2,22 +2,19 @@
   <v-layout>
     <v-card contextual-style="dark">
       <span slot="header">
-       SuperDict
+       How Many People Paid
       </span>
       <div slot="body">
         <p>Nas Demo 项目</p>
         <div>
           <button type="button" class="btn btn-success" @click="onSearch">搜索</button>
           <button type="button" class="btn btn-info" @click="onSubmit">上传</button>
+          <button type="button" class="btn btn-info" @click="onCheck">分享</button>
         </div>
         <br>
         <div>
           <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li  v-for="item in list" class="list-group-item">{{item}}</li>
           </ul>
         </div>
       </div>
@@ -31,6 +28,7 @@
   import nebulas from 'nebulas';
   import VLayout from '@/layouts/Default';
   import VCard from '@/components/Card';
+
   export default {
     components: {
       VLayout,
@@ -41,10 +39,20 @@
      */
     data() {
       return {
-//        dappAddress: 'n1exFH19cJbzVDhTnb2DaoRKztZFJn4efvV',
-//        dappAddress: 'n213qVMt1N61yArPJYrKCqiYjGRyCoDHG1X'
-        dappAddress: 'n232muEMwv3FPAsx6g4U57RbngVwWDJ3wTT'
+
+//        dappAddress: 'n1kpLEWv25HkqG33cRLGowiCGXkA3iBXBzP',
+        dappAddress: '',
+        list: ['abc', 'def'],
       };
+    },
+    created() {
+      //
+      //
+      //
+      //
+//      console.log('created addr',process.env);
+      console.log('created -----', process.env.DAPP_ADDR);
+      this.dappAddress = process.env.DAPP_ADDR;
     },
     methods: {
       onSearch() {
@@ -66,8 +74,8 @@
         };
 
         neb.api.call(from, this.dappAddress, value, nonce, gas_price, gas_limit, contract).then((resp) => {
-//        this.cbSearch(resp)
           console.log(`response of search: ${JSON.stringify(resp)}`);
+          this.cbSearch(resp)
         }).catch((err) => {
           // cbSearch(err)
           console.log(`error:${err.message}`);
@@ -88,15 +96,69 @@
 
         console.log('serialnum', serialNumber);
       },
+      onCheck() {
+        console.log('check');
+        const nebPay = new NebPay();
+
+        const to = this.dappAddress;
+        const value = '0';
+        const callFunction = 'check';
+//        const callArgs = ['abc', 'def'];
+        var callArgs = "[\"" + "defsss"  + "\"]"
+        const serialNumber = nebPay.call(to, value, callFunction, callArgs, {    // 使用nebpay的call接口去调用合约,
+          listener: this.cbPush,        // 设置listener, 处理交易返回信息
+        });
+
+        console.log('serialnum', serialNumber);
+
+        setTimeout(function () {
+          console.log(' after 1s hahhahah');
+
+          nebPay.queryPayInfo(serialNumber)   //search transaction result from server (result upload to server by app)
+            .then(function (resp) {
+              console.log("tx result: " + resp)   //resp is a JSON string
+              var respObject = JSON.parse(resp)
+//              if(respObject.code === 0){
+//                alert(`set ${$("#search_value").val()} succeed!`)
+//                clearInterval(intervalQuery)
+//              }
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+
+        },10000);
+      },
+
+
       cbPush(resp) {
         console.log(`response of push: ${JSON.stringify(resp)}`);
       },
       cbSearch(resp) {
-        console.log(`response of search: ${JSON.stringify(resp)}`);
+//        console.log(`response of search: ${JSON.stringify(resp)}`);
+        let result = resp.result;  // string
+        console.log('result ', result);
+        result = JSON.parse(result)
+        if (!result) {
+          console.log( ' no reulst');
+          return
+        }
+        this.list = result.list;
+        console.log('new list', this.list);
       },
-
-
+      cbCheck(resp) {
+        let result = resp.result;  // string
+        console.log('cb Check result ', result);
+        result = JSON.parse(result)
+        if (!result) {
+          console.log( ' no reulst');
+          return
+        }
+        this.list = result.list;
+        console.log('new list', this.list);
+      }
     },
+
   };
 
 </script>
