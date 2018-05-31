@@ -1,7 +1,9 @@
 // Test
-//0cc518e63029b8e40b1a30e5e3af1eed7340368810a13f768af131c1c311ff76
-//n1kpLEWv25HkqG33cRLGowiCGXkA3iBXBzP
-//
+// 51e97c63c2228afe57a95a270c22b4878ac9385eefa2d961a1afa53703b8c1b9
+// n1y9wBx2Kt4aYSqaosasHtaQVjqzZMktjnj
+// Main
+// 237956e6d40547b6bb056357cec8958bafb84ce8976d72d564f7365e32d6cd7b
+// n1exFH19cJbzVDhTnb2DaoRKztZFJn4efvV
 
 const Item = function (text) {
   if (text) {
@@ -38,28 +40,6 @@ HowManyPeoplePaid.prototype = {
     // todo
   },
 
-  save(key) {
-    key = key.trim();
-    // value = value.trim();
-    if (key === '') {
-      throw new Error('empty key ');
-    }
-
-    const from = Blockchain.transaction.from;
-    let dictItem = this.repo.get(key);
-    if (!dictItem) {
-      dictItem = new Item();
-    }
-
-    // dictItem.author = from;
-    dictItem.key = key;
-    // dictItem.value = value;
-    dictItem.count += 1;
-    dictItem.list.push(from);
-
-    this.repo.put(key, dictItem);
-  },
-
   get(key) {
     key = key.trim();
     if (key === '') {
@@ -70,8 +50,16 @@ HowManyPeoplePaid.prototype = {
   /**
    * 成功后count添加1
    */
-  check(key) {
+  add(key) {
     const from = Blockchain.transaction.from;
+    var value = Blockchain.transaction.value;
+
+    // var value = new BigNumber(Blockchain.transaction.value);
+
+    if (value != 10000000000000000) {
+      throw new Error("对不起，请确认支付0.01NAS!");
+    }
+
     let dictItem = this.repo.get(key);
     if (!dictItem) {
       dictItem = new Item();
@@ -84,5 +72,6 @@ HowManyPeoplePaid.prototype = {
 
     this.repo.put(key, dictItem);
   },
+
 };
 module.exports = HowManyPeoplePaid;

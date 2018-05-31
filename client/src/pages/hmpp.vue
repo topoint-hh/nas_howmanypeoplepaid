@@ -2,10 +2,10 @@
   <v-layout>
     <v-card contextual-style="dark">
       <span slot="header">
-       How Many People Paid
+       How Many People Paid 0.01 Nas, To See How Many People Paid 0.01 Nas?
       </span>
       <div slot="body">
-        <p>Nas Demo 项目</p>
+
         <div>
           <button type="button" class="btn btn-success" @click="onSearch">搜索</button>
           <button type="button" class="btn btn-info" @click="onSubmit">上传</button>
@@ -20,6 +20,8 @@
       </div>
       <div slot="footer"></div>
     </v-card>
+
+
   </v-layout>
 </template>
 <script>
@@ -46,11 +48,6 @@
       };
     },
     created() {
-      //
-      //
-      //
-      //
-//      console.log('created addr',process.env);
       console.log('created -----', process.env.DAPP_ADDR);
       this.dappAddress = process.env.DAPP_ADDR;
     },

@@ -53,11 +53,19 @@ export default [
       guest: true,
     },
   },
-  // SuperDict
+  // hmpp
   {
     path: '/hmpp',
     name: 'hmpp',
     component: () => import('@/pages/hmpp.vue'),
+
+    // If the user needs to be a guest to view this page.
+  },
+  // hmpp2
+  {
+    path: '/hmpp2',
+    name: 'hmpp2',
+    component: () => import('@/pages/hmpp2.vue'),
 
     // If the user needs to be a guest to view this page.
   },
