@@ -7,8 +7,8 @@
       <div class="container has-text-centered">
         <div class="column is-10 is-offset-1">
           <h1 class="title">
-            有多少人会花 <span id="web3-price-1" class="has-text-danger">0.01 NAS</span>,<br/> 来知道有多少人会花 <span id="web3-price-2"
-                                                                                                                                           class="has-text-danger">0.01 NAS?</span>
+            想知道有多少人会花 <span id="web3-price-1" class="has-text-danger">0.01 NAS</span>,<br/> 来知道有多少人花了 <span id="web3-price-2"
+                                                                                                                                           class="has-text-danger">0.01 NAS</span>吗？
           </h1>
           <div v-if="!isShow">
             <div>
